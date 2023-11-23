@@ -20,4 +20,5 @@ Route::get('/', function () {
 });
 
 
+Route::get('/register', [RegisterController::class, 'index']);
 

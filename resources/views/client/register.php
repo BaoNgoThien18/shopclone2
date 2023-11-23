@@ -1,8 +1,4 @@
-@php
 
-echo asset('storage/file.txt');
-
-@endphp
 <!doctype html>
 <html>
 

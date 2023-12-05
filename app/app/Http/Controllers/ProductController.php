@@ -98,7 +98,7 @@ class ProductController extends Controller
             $data['preview'] = 'uploads/' . $imageName;
         }
 
-        $data['user_id'] = session('user')['id'];
+        $data['user_id'] = session('user');
 
         $status = Product::create($data);
 

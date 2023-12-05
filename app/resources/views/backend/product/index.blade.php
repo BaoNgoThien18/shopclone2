@@ -128,7 +128,7 @@
                                             </ul>
                                            </td>
                                         <td>
-                                            <a aria-label="" href="{{ url('admin/accounts/'.$row['id']) }}"
+                                            <a aria-label="" href="{{ route('account.create','productId='.$row['id']) }}"
                                                 style="color:white;" class="btn btn-dark btn-sm btn-icon-left m-b-10"
                                                 type="button">
                                                 <i class="fas fa-tasks mr-1"></i><span class="">Quản lý tài khoản</span>

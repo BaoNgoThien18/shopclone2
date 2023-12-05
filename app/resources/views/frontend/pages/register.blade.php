@@ -222,7 +222,7 @@ $("#btnRegister").on("click", function() {
                     message: respone.msg,
                     timer: 5000
                 });
-                setTimeout("location.href = '{{  url('/login') }}';", 100);
+                setTimeout("location.href = '{{  route('login') }}';", 100);
             } else {
                 Swal.fire(
                     '<?=__('Thất bại');?>',

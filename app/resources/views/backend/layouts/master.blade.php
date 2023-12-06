@@ -34,6 +34,12 @@
     <script src="https://www.google.com/recaptcha/api.js')}}" async defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css') }}" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://www.google.com/recaptcha/api.js')}}" async defer></script>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('template/public/AdminLTE3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/public/AdminLTE3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
     <?= $body['header'] ?>
 
 </head>
@@ -62,7 +68,7 @@
                         data-accordion="false">
                         <li class="nav-item has-treeview">
                             <a href="{{ url('admin/') }}"
-                                class="nav-link <?=$core->active_sidebar(['', '']);?>">
+                                class="nav-link {{ $core->active_sidebar(['', '']) }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -70,9 +76,9 @@
                             </a>
                         </li>
 
-                        <li class="nav-item <?=$core->menuopen_sidebar(['product-add', 'account-view', 'connect-api-edit',
+                        <li class="nav-item {{ $core->menuopen_sidebar(['product-add', 'account-view', 'connect-api-edit',
                         'product-list', 'connect-api', 'connect-api-add', 'product-edit', 'accounts', 'product-order','category-list','category-edit','category-add', 'backup-list', 'account-sold'
-                        ]);?>">
+                        ])}}">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cart-plus"></i>
                                 <p>
@@ -83,21 +89,21 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('category.index')}}"
-                                        class="nav-link <?=$core->active_sidebar(['category-list', 'category-add', 'category-edit']);?>">
+                                        class="nav-link {{ $core->active_sidebar(['category-list', 'category-add', 'category-edit'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Chuyên mục</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('product.index')}}"
-                                        class="nav-link <?=$core->active_sidebar(['product-list','product-edit','accounts','product-add', 'account-sold', 'account-view']);?>">
+                                        class="nav-link {{ $core->active_sidebar(['product-list','product-edit','accounts','product-add', 'account-sold', 'account-view'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Sản phẩm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('index.php?module=admin&action=product-order');?>"
-                                        class="nav-link <?=$core->active_sidebar(['product-order']);?>">
+                                    <a href=""
+                                        class="nav-link {{ $core->active_sidebar(['product-order'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Đơn hàng</p>
                                     </a>
@@ -105,159 +111,12 @@
 
                             </ul>
                         </li>
-                        <!-- <li class="nav-item <?=$core->menuopen_sidebar(['document-add',
-                        'document-list', 'document-edit', 'document-order',
-                        'category-document-list', 'category-document-add',
-                        'category-document-edit'
-                        ]);?>">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Bán Tài Liệu (TUT)
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/category-document-list');?>"
-                                        class="nav-link <?=$core->active_sidebar(['category-document-list','category-document-edit','category-document-add']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Chuyên mục TUT</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/document-list');?>"
-                                        class="nav-link <?=$core->active_sidebar(['document-list','document-edit','document-add']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách TUT</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/document-order');?>"
-                                        class="nav-link <?=$core->active_sidebar(['document-order']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn hàng mua TUT</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item <?=$core->menuopen_sidebar(['config-rate-service', 'service-order']);?>">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-thumbs-up"></i>
-                                <p>
-                                    Bán Tương Tác
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/service-order');?>"
-                                        class="nav-link <?=$core->active_sidebar(['service-order']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn hàng</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url_admin('config-rate-service');?>"
-                                        class="nav-link <?=$core->active_sidebar(['config-rate-service']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cấu hình</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item <?=$core->menuopen_sidebar(['otp-config', 'otp-history']);?>">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-sim-card"></i>
-                                <p>
-                                    Thuê SIM
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/otp-history');?>"
-                                        class="nav-link <?=$core->active_sidebar(['otp-history']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn hàng</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url_admin('otp-config');?>"
-                                        class="nav-link <?=$core->active_sidebar(['otp-config']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cấu hình</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item <?=$core->menuopen_sidebar(['store-fanpage', 'store-fanpage-edit', 'store-fanpage-config', 'store-fanpage-orders']);?>">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fab fa-facebook-square"></i>
-                                <p>
-                                    Bán Fanpage/Group
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url_admin('store-fanpage');?>"
-                                        class="nav-link <?=$core->active_sidebar(['store-fanpage', 'store-fanpage-edit']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Quản lý sản phẩm</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/store-fanpage-orders');?>"
-                                        class="nav-link <?=$core->active_sidebar(['store-fanpage-orders']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn hàng</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/store-fanpage-config');?>"
-                                        class="nav-link <?=$core->active_sidebar(['store-fanpage-config']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cấu hình</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
-                        <!--
-                        <li class="nav-item <?=$core->menuopen_sidebar(['service-add',
-                        'services', 'service-edit', 'service-order', 'service-order-edit']);?>">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fab fa-shopify"></i>
-                                <p>
-                                    Dịch Vụ Khác
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/service-add');?>"
-                                        class="nav-link <?=$core->active_sidebar(['service-add']);?>">
-                                        <i class="fas fa-plus-circle nav-icon"></i>
-                                        <p>Thêm dịch vụ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/services');?>"
-                                        class="nav-link <?=$core->active_sidebar(['services','service-edit']);?>">
-                                        <i class="fas fa-shopping-cart nav-icon"></i>
-                                        <p>Danh sách dịch vụ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/service-order');?>"
-                                        class="nav-link <?=$core->active_sidebar(['service-order','service-order-edit']);?>">
-                                        <i class="fas fa-chart-area nav-icon"></i>
-                                        <p>Đơn hàng dịch vụ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>-->
-                        <li class="nav-item <?=$core->menuopen_sidebar(['flutterwave','crypto','sv2-autobank', 'logs', 'dong-tien', 'nap-the', 'paypal', 'spin-history', 'perfectmoney']);?>">
+
+
+
+
+
+                        <li class="nav-item {{ $core->menuopen_sidebar(['flutterwave','crypto','sv2-autobank', 'logs', 'dong-tien', 'nap-the', 'paypal', 'spin-history', 'perfectmoney'])}}">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-history"></i>
                                 <p>
@@ -267,78 +126,78 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('index.php?module=admin&action=logs');?>"
-                                        class="nav-link <?=$core->active_sidebar(['logs']);?>">
+                                    <a href="{{ url('index.php?module=admin&action=logs')}}"
+                                        class="nav-link {{ $core->active_sidebar(['logs'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Nhật ký hoạt động</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('index.php?module=admin&action=dong-tien');?>"
-                                        class="nav-link <?=$core->active_sidebar(['dong-tien']);?>">
+                                    <a href="{{ url('index.php?module=admin&action=dong-tien')}}"
+                                        class="nav-link {{ $core->active_sidebar(['dong-tien'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Biến động số dư</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/nap-the');?>"
-                                        class="nav-link <?=$core->active_sidebar(['nap-the']);?>">
+                                    <a href="{{ url('admin/nap-the')}}"
+                                        class="nav-link {{ $core->active_sidebar(['nap-the'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lịch sử Nạp Thẻ</p>
                                     </a>
                                 </li>
                                 <!-- <li class="nav-item">
-                                    <a href="{{ url('admin/paypal');?>"
-                                        class="nav-link <?=$core->active_sidebar(['paypal']);?>">
+                                    <a href="{{ url('admin/paypal')}}"
+                                        class="nav-link {{ $core->active_sidebar(['paypal'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lịch sử Nạp PayPal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/perfectmoney');?>"
-                                        class="nav-link <?=$core->active_sidebar(['perfectmoney']);?>">
+                                    <a href="{{ url('admin/perfectmoney')}}"
+                                        class="nav-link {{ $core->active_sidebar(['perfectmoney'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lịch sử Nạp PM</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/crypto');?>"
-                                        class="nav-link <?=$core->active_sidebar(['crypto']);?>">
+                                    <a href="{{ url('admin/crypto')}}"
+                                        class="nav-link {{ $core->active_sidebar(['crypto'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lịch sử Nạp Crypto old</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/sv2-autobank');?>"
-                                        class="nav-link <?=$core->active_sidebar(['sv2-autobank']);?>">
+                                    <a href="{{ url('admin/sv2-autobank')}}"
+                                        class="nav-link {{ $core->active_sidebar(['sv2-autobank'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lịch sử Nạp Auto SV2</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/spin-history');?>"
-                                        class="nav-link <?=$core->active_sidebar(['spin-history']);?>">
+                                    <a href="{{ url('admin/spin-history')}}"
+                                        class="nav-link {{ $core->active_sidebar(['spin-history'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Lịch sử Vòng Quay</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/toyyibpay');?>"
-                                        class="nav-link <?=$core->active_sidebar(['toyyibpay']);?>">
+                                    <a href="{{ url('admin/toyyibpay')}}"
+                                        class="nav-link {{ $core->active_sidebar(['toyyibpay'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Toyyibpay History</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/flutterwave');?>"
-                                        class="nav-link <?=$core->active_sidebar(['flutterwave']);?>">
+                                    <a href="{{ url('admin/flutterwave')}}"
+                                        class="nav-link {{ $core->active_sidebar(['flutterwave'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Flutterwave History</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('admin/squadco');?>"
-                                        class="nav-link <?=$core->active_sidebar(['squadco']);?>">
+                                    <a href="{{ url('admin/squadco')}}"
+                                        class="nav-link {{ $core->active_sidebar(['squadco'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Squadco History</p>
                                     </a>
@@ -346,94 +205,38 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('index.php?module=admin&action=users');?>"
-                                class="nav-link <?=$core->active_sidebar(['users', 'user-edit']);?>">
+                            <a href="{{ url('index.php?module=admin&action=users') }}"
+                                class="nav-link {{ $core->active_sidebar(['users', 'user-edit']) }}">
                                 <i class="nav-icon fas fa-user-alt"></i>
                                 <p>
                                     Thành Viên
                                 </p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="{{ url('admin/email-campaigns');?>"
-                                class="nav-link <?=$core->active_sidebar(['email-campaigns', 'email-campaign-add', 'email-campaign-edit', 'email-sending-view']);?>">
-                                <i class="nav-icon fa-solid fa-envelope"></i>
-                                <p>
-                                    <?=__('Email Campaigns');?>
-                                </p>
-                            </a>
-                        </li> -->
-                        <li class="nav-item <?=$core->menuopen_sidebar(['affiliates', 'log-ref', 'withdraw']);?>">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Affiliates
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url_admin('withdraw');?>"
-                                        class="nav-link <?=$core->active_sidebar(['rwithdraw']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn rút tiền</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/log-ref');?>"
-                                        class="nav-link <?=$core->active_sidebar(['log-ref']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lịch sử hoa hồng</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/affiliates');?>"
-                                        class="nav-link <?=$core->active_sidebar(['affiliates']);?>">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cấu hình</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
                         <li class="nav-item">
-                            <a href="{{ url('admin/bank-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['bank-list', 'bank-edit']);?>">
+                            <a href="{{ url('admin/bank-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['bank-list', 'bank-edit']) }}">
                                 <i class="nav-icon fas fa-university"></i>
                                 <p>
                                     Ngân Hàng
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ url_admin('recharge-crypto');?>"
-                                class="nav-link <?=$core->active_sidebar(['recharge-crypto']);?>">
-                                <i class="nav-icon fas fa-coins"></i>
-                                <p>
-                                    Crypto
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('admin/blog-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['blog-list', 'blog-edit', 'blog-add']);?>">
+                            <a href="{{ url('admin/blog-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['blog-list', 'blog-edit', 'blog-add']) }}">
                                 <i class="nav-icon fab fa-blogger-b"></i>
                                 <p>
                                     Bài Viết
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ url('index.php?module=admin&action=invoices');?>"
-                                class="nav-link <?=$core->active_sidebar(['invoices', 'invoice-edit']);?>">
-                                <i class="nav-icon fas fa-file-invoice-dollar"></i>
-                                <p>
-                                    Hoá Đơn
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('admin/coupon-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['coupon-list', 'coupon-edit', 'coupon-add', 'coupon-log']);?>">
+                            <a href="{{ url('admin/coupon-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['coupon-list', 'coupon-edit', 'coupon-add', 'coupon-log']) }}">
                                 <i class="nav-icon fas fa-percent"></i>
                                 <p>
                                     Mã Giảm Giá
@@ -441,62 +244,28 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/discount-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['discount-list', 'discount-edit', 'discount-add']);?>">
+                            <a href="{{ url('admin/discount-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['discount-list', 'discount-edit', 'discount-add']) }}">
                                 <i class="nav-icon fa-solid fa-tag"></i>
                                 <p>
                                     Giảm giá
                                 </p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="{{ url('admin/promotion-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['promotion-list', 'promotion-edit', 'promotion-add', 'promotion-log']);?>">
-                                <i class="nav-icon fas fa-dollar"></i>
-                                <p>
-                                    Khuyến Mãi Nạp Tiền
-                                </p>
-                            </a>
-                        </li> -->
-                        <!-- <li class="nav-item">
-                            <a href="{{ url('admin/domain-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['domain-list']);?>">
-                                <i class="nav-icon fas fa-list"></i>
-                                <p>
-                                    Quản lý website con
-                                </p>
-                            </a>
-                        </li> -->
+
                         <li class="nav-item">
-                            <a href="{{ url('admin/notification');?>"
-                                class="nav-link <?=$core->active_sidebar(['notification']);?>">
+                            <a href="{{ url('admin/notification') }}"
+                                class="nav-link {{ $core->active_sidebar(['notification']) }}">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Thông Báo
                                 </p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="{{ url('admin/spin-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['spin-list', 'spin-add', 'spin-edit']);?>">
-                                <i class="nav-icon fas fa-gamepad"></i>
-                                <p>
-                                    Vòng Quay
-                                </p>
-                            </a>
-                        </li> -->
-                        <!-- <li class="nav-item">
-                            <a href="{{ url('admin/giftbox-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['giftbox-list']);?>">
-                                <i class="nav-icon fas fa-gift"></i>
-                                <p>
-                                    Gift Box
-                                </p>
-                            </a>
-                        </li> -->
+
                         <li class="nav-item">
-                            <a href="{{ url('admin/question-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['question-list', 'question-edit', 'question-add']);?>">
+                            <a href="{{ url('admin/question-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['question-list', 'question-edit', 'question-add']) }}">
                                 <i class="nav-icon fas fa-question-circle"></i>
                                 <p>
                                     FAQ
@@ -504,8 +273,8 @@
                             </a>
                         </li>
                         <!-- <li class="nav-item">
-                            <a href="{{ url('admin/feedback-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['feedback-list']);?>">
+                            <a href="{{ url('admin/feedback-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['feedback-list']) }}">
                                 <i class="nav-icon fas fa-comment-dots"></i>
                                 <p>
                                     Đánh Giá
@@ -513,8 +282,8 @@
                             </a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="{{ url('admin/menu-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['menu-list', 'menu-add', 'menu-edit']);?>">
+                            <a href="{{ url('admin/menu-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['menu-list', 'menu-add', 'menu-edit']) }}">
                                 <i class="nav-icon fas fa-bars"></i>
                                 <p>
                                     Menu
@@ -522,8 +291,8 @@
                             </a>
                         </li>
                         <!-- <li class="nav-item">
-                            <a href="{{ url('admin/language-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['language-list','language-add', 'language-edit', 'translate-list']);?>">
+                            <a href="{{ url('admin/language-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['language-list','language-add', 'language-edit', 'translate-list']) }}">
                                 <i class="nav-icon fas fa-language"></i>
                                 <p>
                                     Ngôn Ngữ
@@ -531,8 +300,8 @@
                             </a>
                         </li> -->
                         <!-- <li class="nav-item">
-                            <a href="{{ url('admin/currency-list');?>"
-                                class="nav-link <?=$core->active_sidebar(['currency-list','currency-add', 'currency-edit']);?>">
+                            <a href="{{ url('admin/currency-list') }}"
+                                class="nav-link {{ $core->active_sidebar(['currency-list','currency-add', 'currency-edit']) }}">
                                 <i class="nav-icon fas fa-wallet"></i>
                                 <p>
                                     Tiền Tệ
@@ -540,8 +309,8 @@
                             </a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="{{ url('admin/theme');?>"
-                                class="nav-link <?=$core->active_sidebar(['theme']);?>">
+                            <a href="{{ url('admin/theme') }}"
+                                class="nav-link {{ $core->active_sidebar(['theme']) }}">
                                 <i class="nav-icon fas fa-image"></i>
                                 <p>
                                     Giao Diện
@@ -549,8 +318,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('admin/settings');?>"
-                                class="nav-link <?=$core->active_sidebar(['settings']);?>">
+                            <a href="{{ url('admin/settings') }}"
+                                class="nav-link {{ $core->active_sidebar(['settings']) }}">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     Cài Đặt
@@ -589,16 +358,9 @@
 
 <script type="text/javascript">
  $(function() {
-    $('#datatable').DataTable({
+    $('.datatable').DataTable({
         "lengthMenu": [[10, 50, 100, 500, 1000, 2000, 5000, 10000 -1], [10, 50, 100, 500, 1000, 2000, 5000, 10000, "All"]]
     });
-    $('#datatable1').DataTable({
-        "lengthMenu": [[10, 50, 100, 500, 1000, 2000, 5000, 10000 -1], [10, 50, 100, 500, 1000, 2000, 5000, 10000, "All"]]
-    });
-    $('#datatable2').DataTable({
-        "lengthMenu": [[10, 50, 100, 500, 1000, 2000, 5000, 10000 -1], [10, 50, 100, 500, 1000, 2000, 5000, 10000, "All"]]
-    });
-
 });
 
 </script>
@@ -677,6 +439,21 @@ $.widget.bridge('uibutton', $.ui.button)
  <!-- daterangepicker -->
 <script src="{{ asset('template/public/AdminLTE3/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('template/public/AdminLTE3/plugins/daterangepicker/daterangepicker.js') }}"></script>
+
+ <!-- DataTables  & Plugins -->
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/jszip/jszip.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/pdfmake/pdfmake.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/pdfmake/vfs_fonts.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+ <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
 <?= $body['footer'] ?>
 
 </body>

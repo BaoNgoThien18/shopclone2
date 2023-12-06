@@ -129,7 +129,7 @@
 
                         <li class="px-3 pt-3 pb-2 ">
                             <span class="text-uppercase small font-weight-bold">Số Dư <span
-                                    style="color: yellow;">0đ</span></span>
+                                    style="color: yellow;">{{ number_format($user['money']) }}đ</span></span>
                             </span>
                         </li>
                         <!-- <li class=" sidebar-layout">
@@ -148,26 +148,21 @@
                                 </svg>
                             </a>
                             <ul id="menuSanPham" class="submenu collapse" data-parent="#iq-sidebar-toggle">
+                                @foreach ($categories as $row)
+
                                 <li class=" sidebar-layout ">
-                                    <a href="./Mua-tai-khoan.html" class="svg-icon">
-                                        <img width="25px" src="https://cdn.divineshop.vn/image/catalog/Anh/Icon%20svg/giaitri-25627.svg?hash=1640449820" class="mr-2"><span class="">Giải trí</span>
+                                    <a href="{{ route('product.show', $row['id']) }}" class="svg-icon">
+                                        <img width="25px" src="{{asset($row['image'])}}" class="mr-2"><span class="">{{$row['name']}}</span>
                                     </a>
                                 </li>
-                                <li class=" sidebar-layout ">
-                                    <a href="./Mua-tai-khoan.html" class="svg-icon">
-                                        <img width="25px" src="https://cdn.divineshop.vn/image/catalog/Anh/Icon%20svg/hoctap-68990.svg?hash=1640449820" class="mr-2"><span class="">Làm việc </span>
-                                    </a>
-                                </li>
-                                <li class=" sidebar-layout ">
-                                    <a href="./Mua-tai-khoan.html" class="svg-icon">
-                                        <img width="25px" src="https://cdn.divineshop.vn/image/catalog/Banner/Icon/Logo%20Origin-26150.svg?hash=1640449899" class="mr-2"><span class="">Gaming</span>
-                                    </a>
-                                </li>
+
+                                @endforeach
+
                             </ul>
                         </li>
 
                         <li class=" sidebar-layout">
-                            <a href="./Lich-su-order.html" class="svg-icon ">
+                            <a href="{{url('History')}}" class="svg-icon ">
                                 <i class="fas fa-history"></i>
                                 <span class="ml-2">Lịch Sử Mua Hàng</span>
                             </a>
@@ -176,6 +171,7 @@
                             <span class="text-uppercase small font-weight-bold">Nạp Tiền</span></span>
                         </li>
                         <li class=" sidebar-layout">
+<<<<<<< HEAD
                             <a href="{{ route('bank') }}" class="svg-icon ">
                                 <i class="fas fa-university"></i>
                                 <span class="ml-2">Ngân Hàng</span>
@@ -191,8 +187,15 @@
                             <a href="./Nap-the.html" class="svg-icon ">
                                 <i class="fas fa-sd-card"></i>
                                 <span class="ml-2">Nạp Thẻ</span>
+=======
+                            <a href="{{url('Recharge')}}" class="svg-icon ">
+                                <i class="fas fa-university"></i>
+                                <span class="ml-2">Nạp tiền</span>
+>>>>>>> 3bbd1b4ea5d9206007c075c2a899a1143c618e02
                             </a>
                         </li>
+
+
                         <li class="px-3 pt-3 pb-2 ">
                             <span class="text-uppercase small font-weight-bold">Khác</span></span>
                         </li>
@@ -228,7 +231,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
                         <span class="badge badge2 border border-primary text-primary"><i class="fas fa-wallet mr-1"></i>Ví:
-                    <b>0đ</b></span>
+                    <b>{{number_format($user['money'])}}đ</b></span>
                         <!--  -->
                     </div>
                     <div class="d-flex align-items-center">
@@ -504,3 +507,104 @@
 </body>
 
 </html>
+
+
+
+<script type="text/javascript">
+
+    function buyProduct() {
+
+        var productId = $("#productId").val();
+        var amount = $("#amount").val();
+
+        $('#btnBuy').html('<i class="fa fa-spinner fa-spin"></i> Loading...').prop('disabled', true);
+
+        $.ajax({
+            url: "{{url('/ajax/buy')}}",
+            method: "POST",
+            dataType: "JSON",
+            data: {
+                _token: "{{ csrf_token() }}",
+                productId: productId,
+                amount: amount
+            },
+            success: function(data) {
+                $('#btnBuy').html('<i class="fas fa-credit-card mr-1"></i><?=__('Thanh Toán');?>').prop(
+                    'disabled', false);
+                if (data.status == 'success') {
+                    cuteToast({
+                        type: "success",
+                        message: data.msg,
+                        timer: 5000
+                    });
+                    $urlReturn = '';
+                    setTimeout("location.href = '" + $urlReturn + "';", 1000);
+                } else {
+                    Swal.fire(
+                        '<?=__('Thất bại');?>',
+                        data.msg,
+                        'error'
+                    );
+                }
+            },
+            error: function() {
+                $('#btnBuy').html('<i class="fas fa-credit-card mr-1"></i><?=__('Thanh Toán');?>').prop(
+                    'disabled', false);
+                cuteToast({
+                    type: "error",
+                    message: 'Không thể xử lý',
+                    timer: 5000
+                });
+            }
+        });
+    }
+    </script>
+
+<script type="text/javascript">
+    function modalBuy(id, price, name) {
+        $("#productId").val(id);
+        $("#name").val(name);
+        $("#total").html(price);
+        $("#modalBuy").modal();
+    }
+
+    document.getElementById('showDiscountCode').style.display = 'none';
+
+    function showDiscountCode() {
+        if (document.getElementById('showDiscountCode').style.display == 'none') {
+            document.getElementById('btnshowDiscountCode').className = "btn btn-sm btn-dark";
+            $('#btnshowDiscountCode').html('<?=__('Huỷ mã giảm giá');?>');
+            document.getElementById('showDiscountCode').style.display = 'block';
+        } else {
+            document.getElementById('btnshowDiscountCode').className = "btn btn-sm btn-danger";
+            $('#btnshowDiscountCode').html('<?=__('Nhập mã giảm giá');?>');
+            document.getElementById('showDiscountCode').style.display = 'none';
+            document.getElementById('coupon').value = '';
+            totalPayment();
+        }
+    }
+
+    function totalPayment() {
+        $('#total').html('<i class="fa fa-spinner fa-spin"></i> <?=__('Đang xử lý...');?>');
+        $.ajax({
+            url: "{{url('/ajax/totalPayment')}}",
+            method: "POST",
+            data: {
+                productId: $("#productId").val(),
+                amount: $("#amount").val(),
+                _token: "{{ csrf_token() }}",
+            },
+            success: function(data) {
+                $("#total").html(data);
+            },
+            error: function() {
+                cuteToast({
+                    type: "error",
+                    message: 'Không thể tính kết quả thanh toán',
+                    timer: 5000
+                });
+            }
+        });
+        //$("#total").html(total.toString().replace(/(.)(?=(\d{3})+$)/g, '$1,'));
+    }
+</script>

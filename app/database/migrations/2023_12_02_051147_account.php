@@ -11,7 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->id();
+            $table->integer('product_id');
+            $table->string('trans_id')->nullable();
+            $table->string('seller')->nullable();
+            $table->string('buyer')->nullable();
+            $table->text('account');
+            $table->timestamps(); // Adds created_at and updated_at columns
+            $table->index('product_id');
+        });
     }
 
     /**
@@ -19,6 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('accounts');
+
     }
 };

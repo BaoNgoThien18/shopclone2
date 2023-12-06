@@ -73,12 +73,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $core = new CoreController();
+
         $this->validate($request,[
             'stt'=>'integer|required',
             'name'=>'string|required',
             'status'=>'required',
         ]);
+
+        $core = new CoreController();
+
 
         $data = $request->all();
 

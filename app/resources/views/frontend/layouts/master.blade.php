@@ -176,13 +176,13 @@
                             <span class="text-uppercase small font-weight-bold">Nạp Tiền</span></span>
                         </li>
                         <li class=" sidebar-layout">
-                            <a href="./Ngan-hang.html" class="svg-icon ">
+                            <a href="{{ route('bank') }}" class="svg-icon ">
                                 <i class="fas fa-university"></i>
                                 <span class="ml-2">Ngân Hàng</span>
                             </a>
                         </li>
                         <li class=" sidebar-layout">
-                            <a href="./Hoa-don.html" class="svg-icon ">
+                            <a href="{{ route('bill') }}" class="svg-icon ">
                                 <i class="fas fa-file-invoice"></i>
                                 <span class="ml-2">Hoá Đơn</span>
                             </a>
@@ -210,7 +210,7 @@
                             </a>
                         </li>
                         <li class=" sidebar-layout">
-                            <a href="#" class="svg-icon ">
+                            <a href="{{ route('contact') }}" class="svg-icon ">
                                 <i class="fas fa-address-book"></i>
                                 <span class="ml-2">Liên Hệ</span>
                             </a>

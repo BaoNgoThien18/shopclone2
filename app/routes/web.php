@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,12 @@ Route::middleware(['checklogin'])->group(function() {
 
 Route::middleware(['user'])->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('home');
+    // Route::get('/contact', [ContactController::class, 'index']);
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::get('/bank', [BankController::class, 'index'])->name('bank');
+    Route::get('/bill', [BankController::class, 'index'])->name('bill');
+
 });
+
 
 

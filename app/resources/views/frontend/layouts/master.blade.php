@@ -171,27 +171,9 @@
                             <span class="text-uppercase small font-weight-bold">Nạp Tiền</span></span>
                         </li>
                         <li class=" sidebar-layout">
-<<<<<<< HEAD
-                            <a href="{{ route('bank') }}" class="svg-icon ">
-                                <i class="fas fa-university"></i>
-                                <span class="ml-2">Ngân Hàng</span>
-                            </a>
-                        </li>
-                        <li class=" sidebar-layout">
-                            <a href="{{ route('bill') }}" class="svg-icon ">
-                                <i class="fas fa-file-invoice"></i>
-                                <span class="ml-2">Hoá Đơn</span>
-                            </a>
-                        </li>
-                        <li class=" sidebar-layout">
-                            <a href="./Nap-the.html" class="svg-icon ">
-                                <i class="fas fa-sd-card"></i>
-                                <span class="ml-2">Nạp Thẻ</span>
-=======
                             <a href="{{url('Recharge')}}" class="svg-icon ">
                                 <i class="fas fa-university"></i>
                                 <span class="ml-2">Nạp tiền</span>
->>>>>>> 3bbd1b4ea5d9206007c075c2a899a1143c618e02
                             </a>
                         </li>
 
@@ -213,7 +195,7 @@
                             </a>
                         </li>
                         <li class=" sidebar-layout">
-                            <a href="{{ route('contact') }}" class="svg-icon ">
+                            <a href="#" class="svg-icon ">
                                 <i class="fas fa-address-book"></i>
                                 <span class="ml-2">Liên Hệ</span>
                             </a>

@@ -12,6 +12,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\BillController;
+use App\Http\Controllers\InforController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +31,22 @@ use App\Http\Controllers\OrderController;
 
 Route::middleware(['admin'])->group(function() {
     //Admin
+<<<<<<< HEAD
+=======
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+>>>>>>> 3c26c070cdfa3d209bd216e8d39a69b1d7532ff6
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('admin/settings', [AdminController::class, 'settings']);
     Route::post('admin/saveSetting', [AdminController::class, 'saveSetting'])->name('saveSetting');
     Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/product', ProductController::class);
     Route::resource('/admin/account', AccountController::class);
+<<<<<<< HEAD
+=======
+    Route::resource('/admin/infor', InforController::class);
+
+
+>>>>>>> 3c26c070cdfa3d209bd216e8d39a69b1d7532ff6
 });
 
 
@@ -55,6 +70,12 @@ Route::middleware(['user'])->group(function () {
     Route::post('/ajax/getProductOnCategory', [IndexController::class, 'getProductOnCategory']);
     Route::post('/ajax/totalPayment', [IndexController::class, 'totalPayment']);
     Route::post('/ajax/buy', [OrderController::class, 'buy']);
+<<<<<<< HEAD
+=======
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    // Route::get('/bank', [BankController::class, 'index'])->name('bank');
+    // Route::get('/bill', [BillController::class, 'index'])->name('bill');
+>>>>>>> 3c26c070cdfa3d209bd216e8d39a69b1d7532ff6
 
 });
 

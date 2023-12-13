@@ -148,7 +148,11 @@
                                 </svg>
                             </a>
                             <ul id="menuSanPham" class="submenu collapse" data-parent="#iq-sidebar-toggle">
+<<<<<<< HEAD
                                 @foreach ($categories as $row)
+=======
+                                {{-- @foreach ($categories as $row)
+>>>>>>> 3c26c070cdfa3d209bd216e8d39a69b1d7532ff6
 
                                 <li class=" sidebar-layout ">
                                     <a href="{{ route('product.show', $row['id']) }}" class="svg-icon">
@@ -156,7 +160,24 @@
                                     </a>
                                 </li>
 
+<<<<<<< HEAD
                                 @endforeach
+=======
+                                @endforeach --}}
+                                @if(isset($categories))
+                                    <ul id="menuSanPham" class="submenu collapse" data-parent="#iq-sidebar-toggle">
+                                        @foreach ($categories as $row)
+                                            <li class="sidebar-layout">
+                                                <a href="{{ route('product.show', $row['id']) }}" class="svg-icon">
+                                                    <img width="25px" src="{{ asset($row['image']) }}" class="mr-2">
+                                                    <span>{{ $row['name'] }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
+>>>>>>> 3c26c070cdfa3d209bd216e8d39a69b1d7532ff6
 
                             </ul>
                         </li>
@@ -195,7 +216,11 @@
                             </a>
                         </li>
                         <li class=" sidebar-layout">
+<<<<<<< HEAD
                             <a href="#" class="svg-icon ">
+=======
+                            <a href="{{ route('contact') }}" class="svg-icon ">
+>>>>>>> 3c26c070cdfa3d209bd216e8d39a69b1d7532ff6
                                 <i class="fas fa-address-book"></i>
                                 <span class="ml-2">Liên Hệ</span>
                             </a>

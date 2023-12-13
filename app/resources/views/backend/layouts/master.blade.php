@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
     <!-- ckeditor -->
-<script src="http://test.local/public/ckeditor/ckeditor.js"></script>
+<script src="{{ asset('template/public/ckeditor/ckeditor.js') }}"></script>
 
 
 </head>

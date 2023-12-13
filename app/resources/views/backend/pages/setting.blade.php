@@ -195,7 +195,7 @@
 
 
                                         </div>
-                                        <button name="SaveSettings" class="btn btn-info btn-block btn-icon-left m-b-10"
+                                        <button name="" class="btn btn-info btn-block btn-icon-left m-b-10"
                                             type="submit"><i class="fas fa-save mr-1"></i>Lưu Ngay</button>
                                     </form>
                                 </div>
@@ -204,7 +204,7 @@
                                     aria-labelledby="google-reCAPTCHA-tab">
                                     <form action="" method="POST">
                                         <textarea name="lienhe" id="lienhe" cols="30" rows="10">{{$setting::where('name', 'lienhe')->first()['value']}}</textarea>
-                                        <button name="SaveSettings" class="btn btn-info btn-icon-left btn-block m-b-10"
+                                        <button name="LienHe" class="btn btn-info btn-icon-left btn-block m-b-10"
                                             type="submit"><i class="fas fa-save mr-1"></i>Lưu Ngay</button>
                                     </form>
                                 </div>

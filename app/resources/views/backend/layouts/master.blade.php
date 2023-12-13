@@ -204,6 +204,26 @@
                                 </li> -->
                             </ul>
                         </li>
+
+                        {{-- Contact --}}
+                        <li class="nav-item">
+                            <a href="{{ route('infor.index')}}"
+                                class="nav-link {{ $core->active_sidebar(['', '']) }}">
+                                <i class="nav-icon fas fa-user-alt"></i>
+                                <p>
+                                    Thông tin liên hệ
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="{{ url('admin/') }}"
+                                class="nav-link {{ $core->active_sidebar(['', '']) }}">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ url('index.php?module=admin&action=users') }}"
                                 class="nav-link {{ $core->active_sidebar(['users', 'user-edit']) }}">

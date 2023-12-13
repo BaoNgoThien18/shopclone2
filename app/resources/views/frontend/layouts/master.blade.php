@@ -148,7 +148,7 @@
                                 </svg>
                             </a>
                             <ul id="menuSanPham" class="submenu collapse" data-parent="#iq-sidebar-toggle">
-                                @foreach ($categories as $row)
+                                {{-- @foreach ($categories as $row)
 
                                 <li class=" sidebar-layout ">
                                     <a href="{{ route('product.show', $row['id']) }}" class="svg-icon">
@@ -156,7 +156,20 @@
                                     </a>
                                 </li>
 
-                                @endforeach
+                                @endforeach --}}
+                                @if(isset($categories))
+                                    <ul id="menuSanPham" class="submenu collapse" data-parent="#iq-sidebar-toggle">
+                                        @foreach ($categories as $row)
+                                            <li class="sidebar-layout">
+                                                <a href="{{ route('product.show', $row['id']) }}" class="svg-icon">
+                                                    <img width="25px" src="{{ asset($row['image']) }}" class="mr-2">
+                                                    <span>{{ $row['name'] }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
 
                             </ul>
                         </li>
@@ -195,7 +208,7 @@
                             </a>
                         </li>
                         <li class=" sidebar-layout">
-                            <a href="#" class="svg-icon ">
+                            <a href="{{ route('contact') }}" class="svg-icon ">
                                 <i class="fas fa-address-book"></i>
                                 <span class="ml-2">Liên Hệ</span>
                             </a>

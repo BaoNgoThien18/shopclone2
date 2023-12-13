@@ -150,7 +150,10 @@
                                         <td style="height:20px;">
                                             <lord-icon src="https://cdn.lordicon.com/cllunfud.json" trigger="hover" style="width:30px;height:30px">
                                             </lord-icon> <b style="color: green;">***{{substr($row['buyer'], -3, 3)}}</b> Mua <b style="color: red;">{{$row['amount']}}</b>
-                                            <b>{{ \App\Models\Product::find($row->product_id)->name }}</b> - <b style="color:blue;">{{number_format($row['pay'])}}đ</b>
+                                            <b>@if($product = \App\Models\Product::find($row->product_id))
+                                                {{ $product->name }}
+                                            @endif
+                                            </b> - <b style="color:blue;">{{number_format($row['pay'])}}đ</b>
                                         </td>
                                         <td><span class="badge badge-primary">{{$row['created_at']->diffForHumans()}}</span>
                                         </td>

@@ -175,7 +175,7 @@
                         </li>
 
                         <li class=" sidebar-layout">
-                            <a href="{{url('History')}}" class="svg-icon ">
+                            <a href="{{url('history')}}" class="svg-icon ">
                                 <i class="fas fa-history"></i>
                                 <span class="ml-2">Lịch Sử Mua Hàng</span>
                             </a>

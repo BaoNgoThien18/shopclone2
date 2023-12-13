@@ -117,4 +117,34 @@ class AdminController extends Controller
         return redirect()->back();
 
     }
+
+    public function saveSettingLienHe(Request $rq) {
+
+        $setting = Setting::Where('name', 'lienhe')->first();
+        
+        if ($setting) {
+            $setting->update(['value' => $rq->lienhe]);
+            request()->session()->flash('success','Cập nhật thành công');
+        } else {
+            request()->session()->flash('success','Cập nhật thất bại');
+        }
+        
+        return redirect()->back();
+
+    }
+
+    public function saveSettingFaq(Request $rq) {
+
+        $setting = Setting::Where('name', 'faq')->first();
+        
+        if ($setting) {
+            $setting->update(['value' => $rq->faq]);
+            request()->session()->flash('success','Cập nhật thành công');
+        } else {
+            request()->session()->flash('success','Cập nhật thất bại');
+        }
+        
+        return redirect()->back();
+
+    }
 }

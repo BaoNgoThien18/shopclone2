@@ -23,10 +23,13 @@
                                         aria-selected="true">THÔNG TIN CHUNG</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="google-reCAPTCHA-tab" data-toggle="pill" href="#google-reCAPTCHA"
-                                        role="tab" aria-controls="google-reCAPTCHA" aria-selected="false">Liên hệ</a>
+                                    <a class="nav-link" id="lienhe-tab" data-toggle="pill" href="#google-reCAPTCHA"
+                                     role="tab" aria-controls="google-reCAPTCHA" aria-selected="false">Liên hệ</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" id="faq-tab" data-toggle="pill" href="#google-reCAPTCHA-third"
+                                     role="tab" aria-controls="google-reCAPTCHA" aria-selected="false">FAQ</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="card-body">
@@ -195,20 +198,29 @@
 
 
                                         </div>
-                                        <button name="SaveSettings" class="btn btn-info btn-block btn-icon-left m-b-10"
+                                        <button name="" class="btn btn-info btn-block btn-icon-left m-b-10"
                                             type="submit"><i class="fas fa-save mr-1"></i>Lưu Ngay</button>
                                     </form>
                                 </div>
 
-                                <div class="tab-pane fade" id="google-reCAPTCHA" role="tabpanel"
-                                    aria-labelledby="google-reCAPTCHA-tab">
-                                    <form action="" method="POST">
+                                <div class="tab-pane fade" id="google-reCAPTCHA" 
+                                role="tabpanel" aria-labelledby="google-reCAPTCHA-tab1">
+                                    <form action="{{route('saveSettingLienHe')}}" method="POST">
+                                        @csrf
                                         <textarea name="lienhe" id="lienhe" cols="30" rows="10">{{$setting::where('name', 'lienhe')->first()['value']}}</textarea>
-                                        <button name="SaveSettings" class="btn btn-info btn-icon-left btn-block m-b-10"
+                                        <button name="" class="btn btn-info btn-icon-left btn-block m-b-10"
                                             type="submit"><i class="fas fa-save mr-1"></i>Lưu Ngay</button>
                                     </form>
                                 </div>
 
+                                <div class="tab-pane fade" id="google-reCAPTCHA-third" role="tabpanel" aria-labelledby="google-reCAPTCHA">
+                                    <form action="{{route('saveSettingFaq')}}" method="POST">
+                                        @csrf
+                                        <textarea name="faq" id="faq" cols="30" rows="10">{{$setting::where('name', 'faq')->first()['value']}}</textarea>
+                                        <button name="" class="btn btn-info btn-icon-left btn-block m-b-10" type="submit"><i class="fas fa-save mr-1"></i>Lưu Ngay</button>
+                                    </form>
+                                </div>
+                                
 
 
                             </div>

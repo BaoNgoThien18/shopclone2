@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 Use App\Models\User;
-use App\Models\Contact;
 use App\Models\Setting;
 use App\Models\Category;
-class ContactController extends Controller
+class FaqController extends Controller
 {
     public function index() {
         $body = [
@@ -19,9 +18,9 @@ class ContactController extends Controller
     
         $user = User::find(session('user'));
         $categories = Category::all();
-        $lienhe = Setting::Where('name', 'lienhe')->first();
+        $faq = Setting::Where('name', 'faq')->first();
     
-        return view('frontend.pages.contact', compact('body', 'user', 'lienhe', 'categories' ));
+        return view('frontend.pages.faq', compact('body', 'user', 'faq', 'categories' ));
     }
 
 

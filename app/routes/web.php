@@ -11,8 +11,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
-
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\InforController;
@@ -35,10 +35,11 @@ Route::middleware(['admin'])->group(function() {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('admin/settings', [AdminController::class, 'settings']);
     Route::post('admin/saveSetting', [AdminController::class, 'saveSetting'])->name('saveSetting');
+    Route::post('admin/saveSettingLienHe', [AdminController::class, 'saveSettingLienHe'])->name('saveSettingLienHe');
+    Route::post('admin/saveSettingFaq', [AdminController::class, 'saveSettingFaq'])->name('saveSettingFaq');
     Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/product', ProductController::class);
     Route::resource('/admin/account', AccountController::class);
-    Route::resource('/admin/infor', InforController::class);
 
 
 });
@@ -65,6 +66,11 @@ Route::middleware(['user'])->group(function () {
     Route::post('/ajax/totalPayment', [IndexController::class, 'totalPayment']);
     Route::post('/ajax/buy', [OrderController::class, 'buy']);
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+    Route::get('/account/info', [UserController::class, 'info']);
+    Route::get('/account/changePassword', [UserController::class, 'changePassword']);
+    Route::post('account/saveAccountChangePassword', [UserController::class, 'saveAccountChangePassword'])->name('saveAccountChangePassword');
+    
     // Route::get('/bank', [BankController::class, 'index'])->name('bank');
     // Route::get('/bill', [BillController::class, 'index'])->name('bill');
 

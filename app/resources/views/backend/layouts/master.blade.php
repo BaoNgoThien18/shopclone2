@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
     <!-- ckeditor -->
-<script src="http://test.local/public/ckeditor/ckeditor.js"></script>
+    <script src="{{ asset('template/public/ckeditor/ckeditor.js') }}"></script>
 
 
 </head>
@@ -206,29 +206,6 @@
                                 </li> -->
                             </ul>
                         </li>
-<<<<<<< HEAD
-=======
-
-                        {{-- Contact --}}
-                        <li class="nav-item">
-                            <a href="{{ route('infor.index')}}"
-                                class="nav-link {{ $core->active_sidebar(['', '']) }}">
-                                <i class="nav-icon fas fa-user-alt"></i>
-                                <p>
-                                    Thông tin liên hệ
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{{ url('admin/') }}"
-                                class="nav-link {{ $core->active_sidebar(['', '']) }}">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
->>>>>>> 3c26c070cdfa3d209bd216e8d39a69b1d7532ff6
                         <li class="nav-item">
                             <a href="{{ url('index.php?module=admin&action=users') }}"
                                 class="nav-link {{ $core->active_sidebar(['users', 'user-edit']) }}">
@@ -484,8 +461,8 @@ $.widget.bridge('uibutton', $.ui.button)
 </html>
 
 <!-- ckeditor -->
-<script>
-    CKEDITOR.replace("lienhe");
-
+    <script>
+        CKEDITOR.replace("lienhe");
+        CKEDITOR.replace("faq");
     </script>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CoreController;
+use App\Models\Setting;
 
 
 class AdminController extends Controller
@@ -16,11 +17,8 @@ class AdminController extends Controller
     {
         $body = [
             'title' => 'Trang chủ',
-            'desc'   => 'CMSNT Panel',
-            'keyword' => 'cmsnt, CMSNT, cmsnt.co,'
         ];
-        $body['header'] = '';
-        $body['footer'] = '';
+
 
         $core = new CoreController();
         return view('backend.pages.home')->with(compact('core', 'body'));
@@ -72,5 +70,51 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function settings() {
+        $body = [
+            'title' => 'Trang chủ',
+        ];
+
+        $core = new CoreController();
+        $setting = new Setting();
+
+
+        return view('backend.pages.setting')->with(compact('body', 'core', 'setting'));
+    }
+
+    public function saveSetting(Request $rq) {
+
+        $dataKeys = $rq->keys();
+        // dd($dataKeys);
+
+
+        $setting = new Setting();
+
+        // $status = $setting::fill($rq)->save($rq);
+
+        foreach ($dataKeys as $key => $row) {
+
+
+            // Tìm bản ghi với điều kiện 'name' = $row
+            $s = Setting::where('name', $row)->first();
+
+            if ($s) {
+                // Nếu bản ghi tồn tại, thực hiện cập nhật
+                $s->update(['value' => $rq[$row]]);
+            } else {
+                // Nếu không tìm thấy bản ghi, bạn có thể xử lý tùy thuộc vào yêu cầu của bạn
+                // Ví dụ: tạo bản ghi mới hoặc thông báo lỗi, vv.
+                // Đối với mục đích minh họa, ở đây tôi sẽ tạo một bản ghi mới:
+                Setting::create(['name' => $row, 'value' => $rq[$row]]);
+            }
+
+
+        }
+
+        request()->session()->flash('success','Cập nhật thành công');
+        return redirect()->back();
+
     }
 }

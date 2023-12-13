@@ -40,7 +40,9 @@
     <link rel="stylesheet" href="{{ asset('template/public/AdminLTE3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
-    <?= $body['header'] ?>
+    <!-- ckeditor -->
+<script src="http://test.local/public/ckeditor/ckeditor.js"></script>
+
 
 </head>
 
@@ -454,7 +456,13 @@ $.widget.bridge('uibutton', $.ui.button)
  <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
  <script src="{{ asset('template/public/AdminLTE3/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-<?= $body['footer'] ?>
 
 </body>
 </html>
+
+<!-- ckeditor -->
+<script>
+    CKEDITOR.replace("lienhe");
+
+    </script>
+

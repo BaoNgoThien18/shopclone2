@@ -239,5 +239,25 @@ class IndexController extends Controller
         die(number_format($total));
     }
 
+    public function history() {
+
+        $body['title'] = 'Lịch sử đơn hàng';
+        $body['header'] = '';
+        $body['footer'] = '';
+
+        $user = User::find(session('user'));
+
+        $product = new Product();
+
+        $historyOrder = Orders::orderBy('id', 'desc')->limit(10)->get();
+
+        $categories = Category::all();
+
+        $history = Orders::where('buyer', $user['username'])->get();
+
+        return view('frontend.pages.history')->with(compact('body', 'user', 'product', 'history', 'categories'));
+
+    }
+
 
 }

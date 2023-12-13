@@ -43,6 +43,12 @@
     <!-- ckeditor -->
 <script src="http://test.local/public/ckeditor/ckeditor.js"></script>
 
+<<<<<<< HEAD:app/storage/framework/views/d60852e3cc3a7acf223eb2bf14af2eca.php
+=======
+    <!-- ckeditor -->
+<script src="http://test.local/public/ckeditor/ckeditor.js"></script>
+
+>>>>>>> 16014f4bbc1e (emprove code):app/resources/views/backend/layouts/master.blade.php
 
 </head>
 
@@ -466,4 +472,7 @@ $.widget.bridge('uibutton', $.ui.button)
 
     </script>
 
+<<<<<<< HEAD:app/storage/framework/views/d60852e3cc3a7acf223eb2bf14af2eca.php
 <?php /**PATH /var/www/shopclone.local/app/resources/views/backend/layouts/master.blade.php ENDPATH**/ ?>
+=======
+>>>>>>> 16014f4bbc1e (emprove code):app/resources/views/backend/layouts/master.blade.php

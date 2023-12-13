@@ -162,7 +162,11 @@
                         </li>
 
                         <li class=" sidebar-layout">
+<<<<<<< HEAD:app/storage/framework/views/e3d8e16204de9959b0ca240915570eda.php
                             <a href="<?php echo e(url('history')); ?>" class="svg-icon ">
+=======
+                            <a href="{{url('history')}}" class="svg-icon ">
+>>>>>>> 16014f4bbc1e (emprove code):app/resources/views/frontend/layouts/master.blade.php
                                 <i class="fas fa-history"></i>
                                 <span class="ml-2">Lịch Sử Mua Hàng</span>
                             </a>

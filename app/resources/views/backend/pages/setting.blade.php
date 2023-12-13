@@ -20,7 +20,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
                                         href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home"
+<<<<<<< HEAD
                                         aria-selected="true">THÔNG TIN CHUNG 1**</a>
+=======
+                                        aria-selected="true">THÔNG TIN CHUNG</a>
+>>>>>>> 16014f4bbc1e (emprove code)
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="google-reCAPTCHA-tab" data-toggle="pill" href="#google-reCAPTCHA"

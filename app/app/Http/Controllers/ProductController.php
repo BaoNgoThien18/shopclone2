@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Setting;
+use App\Models\Orders;
+use App\Models\Account;
 
 use Illuminate\Http\Request;
 
@@ -119,7 +122,27 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        $body['title'] = 'Trang chủ';
+        $body['header'] = '';
+        $body['footer'] = '';
+
+        $user = User::find(session('user'));
+
+        $categories = Category::all();
+
+        $category = Category::find($id);
+
+        $product = new Product();
+
+        $productFindCategory = Product::where('category_id', $id)->get();
+
+
+        $setting = new Setting();
+
+        $historyOrder = Orders::orderBy('id', 'desc')->limit(10)->get();
+
+        return view('frontend.pages.product')->with(compact('body', 'user', 'product', 'categories', 'historyOrder', 'setting', 'productFindCategory', 'category'));
     }
 
     /**

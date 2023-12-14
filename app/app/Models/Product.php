@@ -23,6 +23,9 @@ class Product extends Model
         return $products;
     }
 
+
+
+
     public function topProduct() {
         $products = $this::orderBy('id', 'desc')->limit(6)->get();
         return $products;

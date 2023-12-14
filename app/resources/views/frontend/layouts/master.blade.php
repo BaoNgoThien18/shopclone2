@@ -92,9 +92,8 @@
         <div class="iq-sidebar sidebar-default">
 
             <div class="iq-sidebar-logo d-flex align-items-end justify-content-between">
-                <a href="#" class="header-logo">
-                    <img src="https://mailngonre.site/assets/storage/images/logo_dark_BCE.png" class="img-fluid rounded-normal light-logo" alt="logo">
-                    <img src="https://mailngonre.site/assets/storage/images/logo_dark_BCE.png" class="img-fluid rounded-normal d-none sidebar-light-img" alt="logo">
+                <a href="{{url('/')}}" class="header-logo">
+                    <img width="100%" src="{{$setting::where('name', 'logo')->first()['value']}}" alt="CMSNT.CO">
                 </a>
                 <div class="side-menu-bt-sidebar-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-light wrapper-menu" width="30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,7 +101,6 @@
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </div>
-
             </div>
 
             <div class="data-scrollbar" data-scroll="1">
@@ -148,7 +146,7 @@
                                 </svg>
                             </a>
                             <ul id="menuSanPham" class="submenu collapse" data-parent="#iq-sidebar-toggle">
-                                {{-- @foreach ($categories as $row)
+                                @foreach ($categories as $row)
 
                                 <li class=" sidebar-layout ">
                                     <a href="{{ route('product.show', $row['id']) }}" class="svg-icon">
@@ -156,20 +154,7 @@
                                     </a>
                                 </li>
 
-                                @endforeach --}}
-                                @if(isset($categories))
-                                    <ul id="menuSanPham" class="submenu collapse" data-parent="#iq-sidebar-toggle">
-                                        @foreach ($categories as $row)
-                                            <li class="sidebar-layout">
-                                                <a href="{{ route('product.show', $row['id']) }}" class="svg-icon">
-                                                    <img width="25px" src="{{ asset($row['image']) }}" class="mr-2">
-                                                    <span>{{ $row['name'] }}</span>
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-
+                                @endforeach
 
                             </ul>
                         </li>
@@ -196,7 +181,7 @@
                         </li>
 
                         <li class=" sidebar-layout">
-                            <a href="#" class="svg-icon ">
+                            <a href="{{ route('faq') }}" class="svg-icon ">
                                 <i class="far fa-question-circle"></i>
                                 <span class="ml-2">FAQ</span>
                             </a>
@@ -381,14 +366,14 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                        <a href="./Trang-ca-nhan.html">Trang cá nhân</a>
+                                        <a href="{{ url('account/info') }}">Trang cá nhân</a>
                                 </li>
                                 <li class="dropdown-item d-flex svg-icon">
                                     <svg class="svg-icon mr-0 text-secondary" id="h-02-p" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg>
-                                    <a href="./Thay-doi-mat-khau.html">Thay đổi mật khẩu</a>
+                                    <a href="{{ url('account/changePassword') }}">Thay đổi mật khẩu</a>
                                 </li>
                                 <li class="dropdown-item d-flex svg-icon">
                                     <svg class="svg-icon mr-0 text-secondary" id="h-02-p" width="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

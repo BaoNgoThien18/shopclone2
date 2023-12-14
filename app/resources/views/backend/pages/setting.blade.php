@@ -20,13 +20,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
                                         href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home"
-                                        aria-selected="true">THÔNG TIN CHUNG **</a>
+                                        aria-selected="true">THÔNG TIN CHUNG</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="google-reCAPTCHA-tab" data-toggle="pill" href="#google-reCAPTCHA"
-                                        role="tab" aria-controls="google-reCAPTCHA" aria-selected="false">Liên hệ</a>
+                                    <a class="nav-link" id="lienhe-tab" data-toggle="pill" href="#google-reCAPTCHA"
+                                     role="tab" aria-controls="google-reCAPTCHA" aria-selected="false">Liên hệ</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" id="faq-tab" data-toggle="pill" href="#google-reCAPTCHA-third"
+                                     role="tab" aria-controls="google-reCAPTCHA" aria-selected="false">FAQ</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="card-body">
@@ -57,6 +60,14 @@
                                     <form action="{{route('saveSetting')}}" method="POST">
                                         @csrf
                                         <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Logo</label>
+                                                    <input type="text" class="form-control" name="logo"
+                                                        value="<?=$setting::where('name', 'logo')->first()['value']?>"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
 
                                             <div class="col-lg-4">
                                                 <div class="form-group">
@@ -191,6 +202,12 @@
                                                         có thể sử dụng.</i>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Thông báo</label>
+                                                   <textarea name="thongbao" id="thongbao" cols="30" rows="10">{{$setting::where('name', 'thongbao')->first()['value']}}</textarea>
+                                                </div>
+                                            </div>
 
 
 
@@ -200,12 +217,21 @@
                                     </form>
                                 </div>
 
-                                <div class="tab-pane fade" id="google-reCAPTCHA" role="tabpanel"
-                                    aria-labelledby="google-reCAPTCHA-tab">
-                                    <form action="" method="POST">
+                                <div class="tab-pane fade" id="google-reCAPTCHA"
+                                role="tabpanel" aria-labelledby="google-reCAPTCHA-tab1">
+                                    <form action="{{route('saveSettingLienHe')}}" method="POST">
+                                        @csrf
                                         <textarea name="lienhe" id="lienhe" cols="30" rows="10">{{$setting::where('name', 'lienhe')->first()['value']}}</textarea>
                                         <button name="LienHe" class="btn btn-info btn-icon-left btn-block m-b-10"
                                             type="submit"><i class="fas fa-save mr-1"></i>Lưu Ngay</button>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane fade" id="google-reCAPTCHA-third" role="tabpanel" aria-labelledby="google-reCAPTCHA">
+                                    <form action="{{route('saveSettingFaq')}}" method="POST">
+                                        @csrf
+                                        <textarea name="faq" id="faq" cols="30" rows="10">{{$setting::where('name', 'faq')->first()['value']}}</textarea>
+                                        <button name="" class="btn btn-info btn-icon-left btn-block m-b-10" type="submit"><i class="fas fa-save mr-1"></i>Lưu Ngay</button>
                                     </form>
                                 </div>
 

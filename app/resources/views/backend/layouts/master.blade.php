@@ -1,3 +1,9 @@
+@php
+
+$setting = new App\Models\Setting();
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +48,7 @@
 
     <!-- ckeditor -->
 <script src="{{ asset('template/public/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('template/public/ckeditor/ckeditor.js') }}"></script>
 
 
 </head>
@@ -51,7 +58,7 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="{{ url('admin/') }}" class="brand-link">
-               <center> <img width="100%" src="{{ asset('template/assets/img/logo_dark.png') }}" alt="CMSNT.CO"></center>
+               <center> <img width="100%" src="{{$setting::where('name', 'logo')->first()['value']}}" alt="CMSNT.CO"></center>
             </a>
             <div class="sidebar">
                 <div class="form-inline">
@@ -104,7 +111,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href=""
+                                    <a href="{{ url('admin/orders') }}"
                                         class="nav-link {{ $core->active_sidebar(['product-order'])}}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Đơn hàng</p>
@@ -118,115 +125,8 @@
 
 
 
-                        <li class="nav-item {{ $core->menuopen_sidebar(['flutterwave','crypto','sv2-autobank', 'logs', 'dong-tien', 'nap-the', 'paypal', 'spin-history', 'perfectmoney'])}}">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-history"></i>
-                                <p>
-                                    Lịch Sử
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('index.php?module=admin&action=logs')}}"
-                                        class="nav-link {{ $core->active_sidebar(['logs'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Nhật ký hoạt động</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('index.php?module=admin&action=dong-tien')}}"
-                                        class="nav-link {{ $core->active_sidebar(['dong-tien'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Biến động số dư</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/nap-the')}}"
-                                        class="nav-link {{ $core->active_sidebar(['nap-the'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lịch sử Nạp Thẻ</p>
-                                    </a>
-                                </li>
-                                <!-- <li class="nav-item">
-                                    <a href="{{ url('admin/paypal')}}"
-                                        class="nav-link {{ $core->active_sidebar(['paypal'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lịch sử Nạp PayPal</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/perfectmoney')}}"
-                                        class="nav-link {{ $core->active_sidebar(['perfectmoney'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lịch sử Nạp PM</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/crypto')}}"
-                                        class="nav-link {{ $core->active_sidebar(['crypto'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lịch sử Nạp Crypto old</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/sv2-autobank')}}"
-                                        class="nav-link {{ $core->active_sidebar(['sv2-autobank'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lịch sử Nạp Auto SV2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/spin-history')}}"
-                                        class="nav-link {{ $core->active_sidebar(['spin-history'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lịch sử Vòng Quay</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/toyyibpay')}}"
-                                        class="nav-link {{ $core->active_sidebar(['toyyibpay'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Toyyibpay History</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/flutterwave')}}"
-                                        class="nav-link {{ $core->active_sidebar(['flutterwave'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Flutterwave History</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('admin/squadco')}}"
-                                        class="nav-link {{ $core->active_sidebar(['squadco'])}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Squadco History</p>
-                                    </a>
-                                </li> -->
-                            </ul>
-                        </li>
 
-                        {{-- Contact --}}
-                        <li class="nav-item">
-                            <a href="{{ route('infor.index')}}"
-                                class="nav-link {{ $core->active_sidebar(['', '']) }}">
-                                <i class="nav-icon fas fa-user-alt"></i>
-                                <p>
-                                    Thông tin liên hệ
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{{ url('admin/') }}"
-                                class="nav-link {{ $core->active_sidebar(['', '']) }}">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ url('index.php?module=admin&action=users') }}"
                                 class="nav-link {{ $core->active_sidebar(['users', 'user-edit']) }}">
                                 <i class="nav-icon fas fa-user-alt"></i>
@@ -293,7 +193,7 @@
                                     FAQ
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <!-- <li class="nav-item">
                             <a href="{{ url('admin/feedback-list') }}"
                                 class="nav-link {{ $core->active_sidebar(['feedback-list']) }}">
@@ -303,7 +203,7 @@
                                 </p>
                             </a>
                         </li> -->
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ url('admin/menu-list') }}"
                                 class="nav-link {{ $core->active_sidebar(['menu-list', 'menu-add', 'menu-edit']) }}">
                                 <i class="nav-icon fas fa-bars"></i>
@@ -311,7 +211,7 @@
                                     Menu
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <!-- <li class="nav-item">
                             <a href="{{ url('admin/language-list') }}"
                                 class="nav-link {{ $core->active_sidebar(['language-list','language-add', 'language-edit', 'translate-list']) }}">
@@ -330,7 +230,7 @@
                                 </p>
                             </a>
                         </li> -->
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ url('admin/theme') }}"
                                 class="nav-link {{ $core->active_sidebar(['theme']) }}">
                                 <i class="nav-icon fas fa-image"></i>
@@ -338,7 +238,7 @@
                                     Giao Diện
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ url('admin/settings') }}"
                                 class="nav-link {{ $core->active_sidebar(['settings']) }}">
@@ -481,8 +381,9 @@ $.widget.bridge('uibutton', $.ui.button)
 </html>
 
 <!-- ckeditor -->
-<script>
-    CKEDITOR.replace("lienhe");
-
+    <script>
+        CKEDITOR.replace("lienhe");
+        CKEDITOR.replace("faq");
+        CKEDITOR.replace("thongbao");
     </script>
 

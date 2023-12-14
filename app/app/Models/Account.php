@@ -12,5 +12,16 @@ class Account extends Model
     protected $fillable=['product_id','trans_id','seller','buyer', 'account'];
 
 
+    public function getAccountOnProduct($categoryId) {
+
+        if ($categoryId == -1) {
+            $products = $this::All();
+        } else {
+            $products = $this::Where('product_id', $categoryId)->Where('buyer', null)->get();
+        }
+
+        return $products;
+    }
+
 
 }

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Account;
 use App\Models\Orders;
+use App\Models\Setting;
 
 class IndexController extends Controller
 {
@@ -23,16 +24,27 @@ class IndexController extends Controller
 
         $product = new Product();
 
+        $setting = new Setting();
+
+
         $historyOrder = Orders::orderBy('id', 'desc')->limit(10)->get();
 
-        return view('frontend.pages.home')->with(compact('body', 'user', 'product', 'categories', 'historyOrder'));
+        return view('frontend.pages.home')->with(compact('body', 'user', 'product', 'categories', 'historyOrder', 'setting'));
     }
+
 
     public function getProductOnCategory(Request $resquest) {
 
         $product = new Product();
 
         $result = $product->getProductOnCategory($resquest->categoryId);
+
+        $category = Category::find($resquest->categoryId);
+
+        if (empty($category)) {
+            $category['name'] = 'Tất cả';
+            $category['image'] = 'https://cdn-icons-png.flaticon.com/128/1170/1170678.png';
+        }
 
 
         $html = '
@@ -151,7 +163,7 @@ class IndexController extends Controller
         <table class="table table-striped table-hover mb-0">
             <thead class="table-color-heading" style="background:#12214E;color:white;">
                 <tr>
-                    <th><img src="https://cdn.divineshop.vn/image/catalog/Anh/Icon%20svg/giaitri-25627.svg?hash=1640449820" width="30px" class="mr-2" />Giải trí</th>
+                    <th><img src="'.asset($category['image']).'" width="30px" class="mr-2" />'.$category['name'].'</th>
                     <!--  -->
                     <th class="text-center hidemobile" width="10%">Hiện có</th>
                     <th class="text-center hidemobile" width="10%">Đã bán</th>
@@ -230,6 +242,7 @@ class IndexController extends Controller
         return json_encode(['status'=>1, 'content'=>$html]);
     }
 
+
     public function totalPayment(Request $request) {
 
         $product = Product::findOrFail($request->productId);
@@ -249,13 +262,15 @@ class IndexController extends Controller
 
         $product = new Product();
 
+        $setting = new Setting();
+
         $historyOrder = Orders::orderBy('id', 'desc')->limit(10)->get();
 
         $categories = Category::all();
 
         $history = Orders::where('buyer', $user['username'])->get();
 
-        return view('frontend.pages.history')->with(compact('body', 'user', 'product', 'history', 'categories'));
+        return view('frontend.pages.history')->with(compact('body', 'user', 'product', 'history', 'categories', 'setting'));
 
     }
 

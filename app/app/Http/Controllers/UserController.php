@@ -7,7 +7,7 @@ use App\Http\Controllers\CoreController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Category;
 
 
 class UserController extends Controller
@@ -103,5 +103,57 @@ class UserController extends Controller
             die(json_encode(['status' => 'error', 'msg' => __('Thông tin tài khoản hoặc mật khẩu không đúng')]));
         }
 
+    }
+
+    public function info() {
+        $body['title'] = 'Trang cá nhân';
+        $body['header'] = '';
+        $body['footer'] = '';
+
+        $user = User::find(session('user'));
+
+        $categories = Category::all();
+
+        return view('frontend.account.info')->with(compact('body', 'user', 'categories'));
+    }
+
+    public function changePassword() {
+        $body['title'] = 'Thay đổi mật khẩu';
+        $body['header'] = '';
+        $body['footer'] = '';
+
+        $user = User::find(session('user'));
+
+        $categories = Category::all();
+
+        return view('frontend.account.changePassword')->with(compact('body', 'user', 'categories'));
+    }
+
+    public function saveAccountChangePassword(Request $rq) {
+
+        $this->validate($rq,[
+            'password'=>'required|min:6|max:12',
+            'newpassword'=>'required',
+            'renewpassword'=>'required',
+        ]);
+
+        $user = User::find(session('user'));
+            
+            if (Hash::check($rq->password, $user['password'])) {
+
+                if($rq->newpassword == $rq->renewpassword){
+                   $user->update(['password' => Hash::make($rq->newpassword)]);
+                    request()->session()->flash('success','Đổi mật khẩu thành công');
+                }else{
+                    request()->session()->flash('error','Mật khẩu nhập lại không đúng');
+                }
+            } else {
+                request()->session()->flash('error','Nhập mật khẩu cũ không đúng');
+            }
+        
+
+        return redirect()->back();
+
+       
     }
 }

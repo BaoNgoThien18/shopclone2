@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 Use App\Models\User;
 use App\Models\Contact;
+use App\Models\Setting;
+use App\Models\Category;
 class ContactController extends Controller
 {
     public function index() {
@@ -14,20 +16,14 @@ class ContactController extends Controller
             'header' => '',
             'footer' => '',
         ];
-    
+
         $user = User::find(session('user'));
-        $contacts = Contact::all();
-    
-        return view('frontend.pages.contact', compact('body', 'user', 'contacts'));
-    }
-    
+        $categories = Category::all();
+        $lienhe = Setting::Where('name', 'lienhe')->first();
+        $setting = new Setting();
 
-    public function showContacts()
-    {
-        $contacts = Contact::all();
-        return view('frontend.pages.contact', compact('contacts'));
+        return view('frontend.pages.contact', compact('body', 'user', 'lienhe', 'categories', 'setting' ));
     }
-
 
 
 }

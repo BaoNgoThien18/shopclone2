@@ -20,10 +20,7 @@
                             <i class="ri-alert-line"></i>
                         </div>
                         <div class="iq-alert-text">
-                            <p>Chào mừng bạn đến với trang web của chúng tôi! Chúng tôi tự hào mang đến cho bạn trải nghiệm mua sắm tài khoản chất lượng cao và an toàn. Dễ dàng sở hữu tài khoản ưa thích của bạn ngay hôm nay. Cùng chúng tôi khám phá
-                                thế giới giải trí không giới hạn!</p>
-
-
+                            <?= $setting::where('name', 'thongbao')->first()['value'] ?>
                         </div>
                     </div>
                 </div>
@@ -150,10 +147,7 @@
                                         <td style="height:20px;">
                                             <lord-icon src="https://cdn.lordicon.com/cllunfud.json" trigger="hover" style="width:30px;height:30px">
                                             </lord-icon> <b style="color: green;">***{{substr($row['buyer'], -3, 3)}}</b> Mua <b style="color: red;">{{$row['amount']}}</b>
-                                            <b>@if($product = \App\Models\Product::find($row->product_id))
-                                                {{ $product->name }}
-                                            @endif
-                                            </b> - <b style="color:blue;">{{number_format($row['pay'])}}đ</b>
+                                            <b>{{ \App\Models\Product::find($row->product_id)->name }}</b> - <b style="color:blue;">{{number_format($row['pay'])}}đ</b>
                                         </td>
                                         <td><span class="badge badge-primary">{{$row['created_at']->diffForHumans()}}</span>
                                         </td>
